@@ -17,6 +17,9 @@ app.use("", tableRouter);
 // json middleware to extract json data
 app.use(express.json());
 
+// authentication middleware file
+const authMiddleWare = require("./middleWare/authMiddleWare");
+
 ////////////////////start//////////////////////////
 // user routes middleware file
 const userRoutes = require("./routes/userRoute");
@@ -28,7 +31,11 @@ app.use("/api/users", userRoutes);
 /***********************************************/
 
 ////////////////////start//////////////////////////
+// questions routes middleware file
+const questionRoutes = require("./routes/questionRoute");
+
 // questions routes middleware
+app.use("/api/questions", authMiddleWare, questionRoutes);
 
 /*******************end*************************/
 /***********************************************/

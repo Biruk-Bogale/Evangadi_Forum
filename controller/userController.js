@@ -86,17 +86,15 @@ async function login(req, res) {
 
     // compare password
     const isMatch = await bcrypt.compare(password, user[0].password);
-
     // console.log(isMatch);
-
     if (!isMatch) {
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ msg: "invalide credential" });
+        .json({ msg: "invalid credential" });
     }
 
-    const userName = user[0].userName;
-    const user_id = user[0].user_id;
+    const { user_id, userName } = user[0];
+    // const user_id = user[0].user_id;
 
     const token = jwt.sign({ userName, user_id }, "secret", {
       expiresIn: "1d",
@@ -116,7 +114,9 @@ async function login(req, res) {
 ////////////////////////////////////////////
 // checkUser Function
 async function checkUser(req, res) {
-  res.send("checkUser");
+  const userName = req.user.userName;
+  const user_id = req.user.user_id;
+  res.status(StatusCodes.OK).json({ msg: "valid user", userName, user_id });
 }
 
 module.exports = { register, login, checkUser };
