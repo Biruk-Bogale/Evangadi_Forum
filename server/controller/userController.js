@@ -20,7 +20,7 @@ async function register(req, res) {
 
   try {
     const [user] = await connection.query(
-      "SELECT userName,user_id FROM users WHERE userame = ? OR email = ?",
+      "SELECT userName,user_id FROM users WHERE userName = ? OR email = ?",
       [userName, email]
     );
 
