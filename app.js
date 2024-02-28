@@ -2,9 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 3333;
-const connection = require("./db/dbConfig");
 
-// db connection
+//  connection
+const connection = require("./db/dbConfig");
 
 ////////////////////start//////////////////////////
 // table routes middleware file
@@ -44,6 +44,11 @@ app.use("/api/questions", authMiddleWare, questionRoutes);
 
 ////////////////////start//////////////////////////
 // answers routes middleware
+
+// answer middleware
+const answerRoutes = require("./routes/answerRoute");
+//answer routes middleware
+app.use("/api/answer", authMiddleWare, answerRoutes);
 
 /*******************end*************************/
 /***********************************************/
