@@ -20,7 +20,7 @@ async function register(req, res) {
 
   try {
     const [user] = await connection.query(
-      "SELECT userName,user_id FROM users WHERE userName = ? OR email = ?",
+      "SELECT userName,user_id FROM users WHERE userame = ? OR email = ?",
       [userName, email]
     );
 
@@ -96,7 +96,7 @@ async function login(req, res) {
     const { user_id, userName } = user[0];
     // const user_id = user[0].user_id;
 
-    const token = jwt.sign({ userName, user_id }, "secret", {
+    const token = jwt.sign({ userName, user_id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 

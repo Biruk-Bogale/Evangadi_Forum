@@ -17,7 +17,7 @@ async function authMiddleWare(req, res, next) {
   try {
     // {userName,user_id}
 
-    const { userName, user_id } = jwt.verify(token, "secret");
+    const { userName, user_id } = jwt.verify(token, process.env.JWT_SECRET);
     req.user = { userName, user_id };
     next();
     // console.log(data)

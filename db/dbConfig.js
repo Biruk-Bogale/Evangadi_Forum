@@ -3,9 +3,9 @@ const express = require("express");
 const tableRouter = express.Router();
 
 const connection = mysql.createPool({
-  user: "biruk1",
-  password: "1616",
-  database: "evangadi_db",
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
   host: "localhost",
   connectionLimit: 10,
 });

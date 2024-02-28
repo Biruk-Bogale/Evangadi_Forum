@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 3333;
@@ -31,6 +32,7 @@ app.use("/api/users", userRoutes);
 /***********************************************/
 
 ////////////////////start//////////////////////////
+
 // questions routes middleware file
 const questionRoutes = require("./routes/questionRoute");
 
